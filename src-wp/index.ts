@@ -1,6 +1,8 @@
 import { hello } from './modules/sub'
 import labelmake from 'labelmake'
-import { Template } from 'labelmake/dist/types/type';
+import { Template } from 'labelmake/dist/types/type'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap'
 
 hello()
 
@@ -15,7 +17,6 @@ hello()
     ],
   }
   const inputs = [
-    { field1: "aa", field2: "Bbbb" },
     { field1: "ABC", field2: "#$%&'()=~|" },
   ]
   const pdf = await labelmake({ template, inputs })
