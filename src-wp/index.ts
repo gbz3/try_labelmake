@@ -6,15 +6,19 @@ import './index.scss'
 
 hello()
 
-const initPdf = async (field1: string, field2: string) => {
+const referenceTo = <T extends HTMLElement>(id: string) => {
+  const idRef = document.getElementById(id)
+  if (idRef == null) throw new Error(`${id} not found.`)
+  return idRef as T
+}
+const inputsUpdate = referenceTo<HTMLButtonElement>('inputs-update')
+const inputsField1 = referenceTo<HTMLInputElement>('inputs-field1')
+const inputsField2 = referenceTo<HTMLInputElement>('inputs-field2')
+
+const initPdf = async () => {
   const fontBytes = await fetch('Koruri-Regular.ttf').then(res => res.arrayBuffer())
-  showPdf(field1, field2, fontBytes)
-  const btnUpdate = document.getElementById('inputs-update')
-  if (btnUpdate instanceof HTMLButtonElement) btnUpdate.onclick = ev => {
-    const f1 = document.getElementById('inputs-field1') as HTMLInputElement
-    const f2 = document.getElementById('inputs-field2') as HTMLInputElement
-    showPdf(f1.value, f2.value, fontBytes)
-  }
+  showPdf(inputsField1.value, inputsField2.value, fontBytes)
+  inputsUpdate.onclick = ev => showPdf(inputsField1.value, inputsField2.value, fontBytes)
 }
 
 const showPdf = async (field1: string, field2: string, fontBytes: ArrayBuffer) => {
@@ -36,4 +40,6 @@ const showPdf = async (field1: string, field2: string, fontBytes: ArrayBuffer) =
   if (container instanceof HTMLIFrameElement) container.src = URL.createObjectURL(blob)
 }
 
-initPdf('ABC', "#$%&'()=~|")
+inputsField1.value = 'ABC'
+inputsField2.value = "#$%&'()=~|"
+initPdf()
