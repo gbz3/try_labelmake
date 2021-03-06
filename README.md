@@ -81,3 +81,13 @@ $ npm i -S http2
 $ vi src/index.ts
 $ npm run 8443    # Ctrl-C で停止。https://localhost:8443 でアクセス
 ```
+
+## webpack 導入（フロントエンド用）
+
+- [最新版で学ぶwebpack 5入門 JavaScriptのモジュールバンドラ](https://ics.media/entry/12140/)
+- [webpack の基本的な使い方](https://www.webdesignleaves.com/pr/jquery/webpack_basic_01.html)
+
+```bash
+$ npm i -D webpack webpack-cli
+$ echo "static/main.js" >> .gitignore
+```
