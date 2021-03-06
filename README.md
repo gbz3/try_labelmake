@@ -99,3 +99,24 @@ $ echo "static/main.js" >> .gitignore
 ```bash
 $ npm i -D ts-loader
 ```
+
+## labelmake 導入
+
+```bash
+$ npm i -S labelmake
+$ npm ls
+...
+├─┬ labelmake@2.0.15
+│ ├─┬ @pdf-lib/fontkit@1.1.1
+│ │ └── pako@1.0.11
+│ ├── bwip-js@2.1.1
+│ └─┬ pdf-lib@1.16.0
+│   ├─┬ @pdf-lib/standard-fonts@1.0.0
+│   │ └── pako@1.0.11 deduped
+│   ├─┬ @pdf-lib/upng@1.0.1
+│   │ └── pako@1.0.11 deduped
+│   ├── pako@1.0.11 deduped
+│   └── tslib@1.14.1
+...
+
+```
