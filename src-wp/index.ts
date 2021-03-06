@@ -6,7 +6,7 @@ import './index.scss'
 
 hello()
 
-;(async () => {
+const showPdf = async (field1: string, field2: string) => {
   const template: Template = {
     basePdf: { width: 200, height: 100 },
     schemas: [
@@ -16,11 +16,16 @@ hello()
       }
     ],
   }
-  const inputs = [
-    { field1: "ABC", field2: "#$%&'()=~|" },
-  ]
+  const inputs = [{ field1: field1, field2: field2 }]
   const pdf = await labelmake({ template, inputs })
   const blob = new Blob([pdf.buffer], { type: "application/pdf" })
   const container = document.getElementById('pdf')
   if (container instanceof HTMLIFrameElement) container.src = URL.createObjectURL(blob)
-})()
+}
+showPdf('ABC', "#$%&'()=~|")
+const btnUpdate = document.getElementById('inputs-update')
+if (btnUpdate instanceof HTMLButtonElement) btnUpdate.onclick = ev => {
+  const f1 = document.getElementById('inputs-field1') as HTMLInputElement
+  const f2 = document.getElementById('inputs-field2') as HTMLInputElement
+  showPdf(f1.value, f2.value)
+}
