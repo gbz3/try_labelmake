@@ -1,8 +1,8 @@
 import { hello } from './modules/sub'
 import labelmake from 'labelmake'
 import { Template } from 'labelmake/dist/types/type'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap'
+import './index.scss'
 
 hello()
 
