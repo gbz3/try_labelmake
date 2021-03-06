@@ -7,7 +7,9 @@ import './index.scss'
 hello()
 
 const showPdf = async (field1: string, field2: string) => {
+  const fontBytes = await fetch('Koruri-Regular.ttf').then(res => res.arrayBuffer())
   const template: Template = {
+    fontName: 'Koruri',
     basePdf: { width: 200, height: 100 },
     schemas: [
       {
@@ -17,7 +19,8 @@ const showPdf = async (field1: string, field2: string) => {
     ],
   }
   const inputs = [{ field1: field1, field2: field2 }]
-  const pdf = await labelmake({ template, inputs })
+  const font = { Koruri: fontBytes }
+  const pdf = await labelmake({ template, inputs, font })
   const blob = new Blob([pdf.buffer], { type: "application/pdf" })
   const container = document.getElementById('pdf')
   if (container instanceof HTMLIFrameElement) container.src = URL.createObjectURL(blob)
