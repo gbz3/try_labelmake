@@ -6,8 +6,18 @@ import './index.scss'
 
 hello()
 
-const showPdf = async (field1: string, field2: string) => {
+const initPdf = async (field1: string, field2: string) => {
   const fontBytes = await fetch('Koruri-Regular.ttf').then(res => res.arrayBuffer())
+  showPdf(field1, field2, fontBytes)
+  const btnUpdate = document.getElementById('inputs-update')
+  if (btnUpdate instanceof HTMLButtonElement) btnUpdate.onclick = ev => {
+    const f1 = document.getElementById('inputs-field1') as HTMLInputElement
+    const f2 = document.getElementById('inputs-field2') as HTMLInputElement
+    showPdf(f1.value, f2.value, fontBytes)
+  }
+}
+
+const showPdf = async (field1: string, field2: string, fontBytes: ArrayBuffer) => {
   const template: Template = {
     fontName: 'Koruri',
     basePdf: { width: 200, height: 100 },
@@ -25,10 +35,5 @@ const showPdf = async (field1: string, field2: string) => {
   const container = document.getElementById('pdf')
   if (container instanceof HTMLIFrameElement) container.src = URL.createObjectURL(blob)
 }
-showPdf('ABC', "#$%&'()=~|")
-const btnUpdate = document.getElementById('inputs-update')
-if (btnUpdate instanceof HTMLButtonElement) btnUpdate.onclick = ev => {
-  const f1 = document.getElementById('inputs-field1') as HTMLInputElement
-  const f2 = document.getElementById('inputs-field2') as HTMLInputElement
-  showPdf(f1.value, f2.value)
-}
+
+initPdf('ABC', "#$%&'()=~|")
