@@ -2,10 +2,18 @@ import Koa from 'koa'
 import http2 from 'http2'
 import fs from 'fs'
 
+import { buildLogger } from './modules/logger'
+
 // Koa2 サーバ初期設定
 const app = new Koa()
+const appLogger = buildLogger('APP')
 
 // ミドルウェア設定
+import { mwRequestId } from './middlewares/request-id'
+import { mwRequestTrace } from './middlewares/request-trace'
+
+app.use(mwRequestId)
+app.use(mwRequestTrace)
 app.use(async (ctx, next) => {
   ctx.body = "koa app."
 })
@@ -17,3 +25,4 @@ const options = {
   cert: fs.readFileSync('ssc/server.crt'),
 }
 http2.createSecureServer(options, app.callback()).listen(port)
+appLogger.info(`listening on port ${port}`)
