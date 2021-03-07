@@ -19,18 +19,19 @@ pdf.onload = () => console.log(`pdf.onload()`)
 
 const initPdf = async () => {
   const fontBytes = await fetch('Koruri-Regular.ttf').then(res => res.arrayBuffer())
-  showPdf(inputsField1.value, inputsField2.value, fontBytes)
-  inputsUpdate.onclick = ev => showPdf(inputsField1.value, inputsField2.value, fontBytes)
+  const pdfBytes = await fetch('with_update_sections.pdf').then(res => res.arrayBuffer())
+  showPdf(inputsField1.value, inputsField2.value, pdfBytes, fontBytes)
+  inputsUpdate.onclick = ev => showPdf(inputsField1.value, inputsField2.value, pdfBytes, fontBytes)
 }
 
-const showPdf = async (field1: string, field2: string, fontBytes: ArrayBuffer) => {
+const showPdf = async (field1: string, field2: string, pdfBytes: ArrayBuffer, fontBytes: ArrayBuffer) => {
   const template: Template = {
     fontName: 'Koruri',
-    basePdf: { width: 200, height: 100 },
+    basePdf: pdfBytes,
     schemas: [
       {
-        field1: { type: "text", width: 50, height: 50, position: { x: 20, y: 20 }, fontSize: 30 },
-        field2: { type: "text", width: 50, height: 50, position: { x: 20, y: 40 }, fontSize: 20 },
+        field1: { type: "text", width: 50, height: 50, position: { x: 20, y: 20 }, fontSize: 30, fontColor: '#c51162' },
+        field2: { type: "text", width: 50, height: 50, position: { x: 20, y: 40 }, fontSize: 20, fontColor: '#c51162' },
       }
     ],
   }
