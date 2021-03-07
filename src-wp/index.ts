@@ -14,6 +14,8 @@ const referenceTo = <T extends HTMLElement>(id: string) => {
 const inputsUpdate = referenceTo<HTMLButtonElement>('inputs-update')
 const inputsField1 = referenceTo<HTMLInputElement>('inputs-field1')
 const inputsField2 = referenceTo<HTMLInputElement>('inputs-field2')
+const pdf = referenceTo<HTMLIFrameElement>('pdf')
+pdf.onload = () => console.log(`pdf.onload()`)
 
 const initPdf = async () => {
   const fontBytes = await fetch('Koruri-Regular.ttf').then(res => res.arrayBuffer())
