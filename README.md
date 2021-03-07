@@ -139,3 +139,7 @@ $ npm i -D sass sass-loader postcss postcss-loader autoprefixer mini-css-extract
 $ echo "static/style.css" >> .gitignore
 $ echo "static/style.css.map" >> .gitignore
 ```
+
+## 配列からオブジェクト生成
+
+- [配列からオブジェクトを生成する(JavaScript)](https://qiita.com/mochafeca/items/747a83a6f14baf0b9383)
