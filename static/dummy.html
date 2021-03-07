@@ -17,17 +17,25 @@
     <button type="button" class="btn btn-light">Light</button>
     <button type="button" class="btn btn-dark">Dark</button>
     <button type="button" class="btn btn-link">Link</button>
-    <div class="input-group p-2">
-      <div class="input-group-prepend">
-        <span class="input-group-text">inputs</span>
-      </div>
-      <input type="text" class="form-control" placeholder="field1" id="inputs-field1">
-      <input type="text" class="form-control" placeholder="field2" id="inputs-field2">
-      <div class="input-group-append">
-        <button type="button" class="btn btn-outline-primary" id="inputs-update">Update</button>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-8">
+          <iframe id="pdf" style="padding: 0; width: 100%;"></iframe>
+        </div>
+        <div class="col-4">
+          <div class="input-group p-2">
+            <div class="input-group-prepend">
+              <span class="input-group-text">inputs</span>
+            </div>
+            <input type="text" class="form-control" placeholder="field1" id="inputs-field1">
+            <input type="text" class="form-control" placeholder="field2" id="inputs-field2">
+            <div class="input-group-append">
+              <button type="button" class="btn btn-outline-primary" id="inputs-update">Update</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <iframe id="pdf" style="padding: 0; height: 50vh; width: 98vw;"></iframe>
 
     <script src="main.js"></script>
   </body>
